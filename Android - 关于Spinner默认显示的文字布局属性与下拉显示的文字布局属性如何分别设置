@@ -1,0 +1,32 @@
+先看效果图
+
+![](http://upload-images.jianshu.io/upload_images/1780352-13de8eb0060cc94d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)
+在告警名称那个地方是一个searchablespinner，带有搜索的spinner控件，本质上还是spinner封装了一下，这个没什么好说的。
+主要是在不展开的情况下，我需要让文字单行显示并且省略。可能是我的搜索方法问题没有找到比较好的方式，直到我偶然发现了一个方法。
+直接上代码
+```
+
+private void initSearchableSpinner() {
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.lib_tv_spinner, dataArray);//设置默认标题布局相关适配文字过长的问题
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);//设置下拉显示的布局相关
+        spinner.setAdapter(arrayAdapter);
+    }
+
+```
+lib_tv_spinner
+```
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical"
+          android:ellipsize="middle"
+          android:lines="1"
+          android:orientation="vertical"
+          android:paddingLeft="15dp"
+          android:paddingRight="15dp"
+          android:textColor="@color/gray"
+          android:textSize="14sp"/>
+
+```
+还需要我多说什么吗？一眼就明白。
